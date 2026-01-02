@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="ProjectStyles/Birthday.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <title>Happy Birthday!</title>
+</head>
+<body>
+<header class="opening-container">
+  <!-- <section class="left-container">
+    <img src="ProjectImages/Kemurnian.png" alt="" class="logo">
+  </section> -->
+  <section class="middle-container">
+    <h1 class="opening">Happy Birthday, </h1>
+    <h2 class="name"> Christian! </h2>
+  </section>
+</header>
+<main class="message-container">
+   <p class="message"> I hope you always strive to be a better version of yourself everyday. I wish you all the best in your future endeavours, plans and dreams. May God bless you with his wisdom and remember to be yourself :D </p>
+   <img src="ProjectImages/CDL.jpg" class="person">
+   <button class="confetti-button" id="confettiButton">Confetti! &#127881 [Ear Warning]</button>
+   <audio src="ProjectAudios/YAY!.mp3" class="sound-js"></audio>
+</main>
+<section class="cake-container">
+    <img src="ProjectImages/Cake.png" class="cake">
+</section>
+
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+  const button = document.getElementById('confettiButton');
+  const sound = document.querySelector('.sound-js');
+
+  button.addEventListener('click', () => {
+    sound.play();
+  })
+
+  button.addEventListener('click', () => {
+    const duration = 3 * 1000;
+    const animationEnd = Date.now() + duration;
+    const defaults = {
+      startVelocity: 35,
+      spread: 360,
+      ticks: 120,
+      zIndex: 1000
+    };
+
+    const interval = setInterval(() => {
+      const timeLeft = animationEnd - Date.now();
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+
+      for (let i = 0; i < 3; i++) {
+        confetti(Object.assign({}, defaults, {
+          particleCount: 25, 
+          origin: {
+            x: Math.random(),
+            y: Math.random() * .2
+          }
+        }))
+      }
+    }, 150);
+  });
+
+  
+</script>
+</body>
+</html>
